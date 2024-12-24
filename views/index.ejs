@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Shore Life Game</title>
+</head>
+<body>
+  <h1>Shore Life Game</h1>
+  <form action="/add" method="POST">
+    <input type="text" name="name" placeholder="Enter your name" required>
+    <button type="submit">Add Participant</button>
+  </form>
+  <h2>Leaderboard</h2>
+  <div id="leaderboard">
+    <% participants.forEach(participant => { %>
+      <div>
+        <strong><%= participant.name %></strong>: <%= participant.points %> points
+        <form action="/update" method="POST" style="display:inline;">
+          <input type="hidden" name="id" value="<%= participant._id %>">
+          <input type="number" name="points" placeholder="Add Points" required>
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    <% }); %>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
