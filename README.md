@@ -1,0 +1,1 @@
+# shore-life-game
